@@ -12,6 +12,10 @@ var session = require("express-session")({
   resave: true,
   saveUninitialized: true
 });
+let {mongoose} = require('./mongoConnect')
+let db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+
 var app = express();
 
 app.use(session)

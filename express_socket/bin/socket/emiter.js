@@ -1,3 +1,3 @@
-module.exports = (io, data) => {
-        io.sockets.emit("updated", data)
+module.exports = {
+       update: (io, amount) => io.sockets.emit("updated", amount)
 }
