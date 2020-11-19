@@ -1,27 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   decrement,
   increment,
   incrementByAmount,
   incrementAsync,
-  setAmount,
   selectCount,
 } from '../container/counterSlice';
 import styles from '../assets/Counter.module.css';
-import socket from '../socket'
 
-export function Counter() {
+export function Counter(amount) {
   const count = useSelector(selectCount);
   const dispatch = useDispatch();
-  const [incrementAmount, setIncrementAmount] = useState('2');
-
-  useEffect(() => {
-    socket.on('updated', (amount) => {
-      dispatch(setAmount(amount));
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const [incrementAmount, setIncrementAmount] = useState(2);
 
   return (
     <div>

@@ -13,15 +13,15 @@ export const counterSlice = createSlice({
       // which detects changes to a "draft state" and produces a brand new
       // immutable state based off those changes
       state.value += 1;
-      socket.emit('updated', state.value);
+      socket.emit('setAmount', state.value);
     },
     decrement: state => {
       state.value -= 1;
-      socket.emit('updated', state.value);
+      socket.emit('setAmount', state.value);
     },
     incrementByAmount: (state, action) => {
       state.value += action.payload;
-      socket.emit('updated', state.value);
+      socket.emit('setAmount', state.value);
     },
     setAmount: (state, action) => {
       state.value = action.payload;

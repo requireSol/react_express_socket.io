@@ -4,14 +4,14 @@ let {update} = require('./emiter')
 
 require('../../mongoConnect')
 module.exports = (socket, io) => {
-    socket.on('updated', async amount => {
+    socket.on('setAmount', async amount => {
         let documents = await countSchema.find({});
         if(documents.length === 0){
           await countSchema.create({ amount: amount });
         }else{
           await countSchema.updateOne({ _id: ObjectId(documents[0]._id) }, {amount: amount}).catch((error)=> console.log(error));
         }
-        console.log('updated ', amount);
+        console.log('setAmount ', amount);
         update(io, amount);
       });
 }
