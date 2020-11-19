@@ -11,10 +11,6 @@ function App() {
     socket.on('connect', () => {
       console.log("connected")
     });
-
-    socket.on('updated', () => {
-      console.log("updated")
-    });
     
   }, []);
 

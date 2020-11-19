@@ -12,20 +12,24 @@ export const counterSlice = createSlice({
       // doesn't actually mutate the state because it uses the Immer library,
       // which detects changes to a "draft state" and produces a brand new
       // immutable state based off those changes
-      socket.emit('hey', "Enam");
       state.value += 1;
+      socket.emit('updated', state.value);
     },
     decrement: state => {
-      socket.emit('hey', "Enam");
       state.value -= 1;
+      socket.emit('updated', state.value);
     },
     incrementByAmount: (state, action) => {
       state.value += action.payload;
+      socket.emit('updated', state.value);
     },
+    setAmount: (state, action) => {
+      state.value = action.payload;
+    }
   },
 });
 
-export const { increment, decrement, incrementByAmount } = counterSlice.actions;
+export const { increment, decrement, incrementByAmount, setAmount } = counterSlice.actions;
 
 // The function below is called a thunk and allows us to perform async logic. It
 // can be dispatched like a regular action: `dispatch(incrementAsync(10))`. This

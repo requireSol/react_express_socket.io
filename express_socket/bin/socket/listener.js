@@ -1,8 +1,8 @@
 module.exports = (socket, io) => {
 
-    socket.on('hey', data => {
-        console.log('hey ', data);
-        io.sockets.emit("updated")
+    socket.on('updated', data => {
+        console.log('updated ', data);
+        io.sockets.emit("updated", data)
       });
       
 }
